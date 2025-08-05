@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
-  console.error("❌ MONGO_URI not provided");
+  console.error("MONGO_URI not provided");
   process.exit(1);
 }
 
@@ -21,15 +21,15 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true // recommended for newer versions
 })
 .then(() => {
-  console.log("✅ Connected to MongoDB");
+  console.log("Connected to MongoDB");
 
   // Start the server after DB connection
   app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 })
 .catch(err => {
-  console.error("❌ MongoDB connection error:", err.message);
+  console.error("MongoDB connection error:", err.message);
   process.exit(1);
 });
 
@@ -39,12 +39,12 @@ const User = mongoose.model("User", new mongoose.Schema({
   email: String
 }));
 
-// ➕ Root route for basic health check
+// Root route for basic health check
 app.get("/", (req, res) => {
-  res.send("✅ API is working and connected to MongoDB");
+  res.send("API is working and connected to MongoDB");
 });
 
-// 👥 Sample route to fetch users
+// Sample route to fetch users
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
@@ -66,7 +66,7 @@ app.post("/users", async (req, res) => {
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
-    console.error("❌ Error creating user:", error.message);
+    console.error("Error creating user:", error.message);
     res.status(500).json({ message: "Server error" });
   }
 });
