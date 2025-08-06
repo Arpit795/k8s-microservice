@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
-  console.error("MONGO_URI not provided");
+  console.error("MONGO_URI  not provided");
   process.exit(1);
 }
 
