@@ -45,10 +45,10 @@ service communication, pod recovery, and persistent storage.
      kubectl describe pod <pod-name>
  
 3. ###  **API Call (GET /users)**
-   - Use `curl` or Postman to hit:
+   - Use `curl`:
  
      curl http://<external-ip>/users
-     curl http://34.57.40.156/users
+     curl http:/34.55.6.87/users
  
    - Users are retrieved from MongoDB.
 
@@ -63,10 +63,14 @@ service communication, pod recovery, and persistent storage.
      kubectl delete pod <mongo-pod-name>
  
    - pod comes back.
-   - Confirm **data is still present**:
- 
+   - check External IP
+     kubectl get svc api-service -w
+   - In case External IP is blank
+     kubectl patch svc api-service -p '{"spec": {"type": "LoadBalancer"}}'
+   - Confirm **data is still present** use below code and put new External IP if any:
      curl http://<external-ip>/users
-     curl http://34.57.40.156/users
+ 
+
 ---
 
 ##  How to Run This Project
